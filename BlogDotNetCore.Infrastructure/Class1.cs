@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BlogDotNetCore.Model
+namespace BlogDotNetCore.Infrastructure
 {
     public class Class1
     {

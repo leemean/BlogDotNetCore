@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using BlogDotNetCore.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -12,6 +13,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.Swagger;
+
+using BlogDotNetCore.Data.Extensions;
 
 namespace BlogDotNetCore
 {
@@ -27,6 +30,23 @@ namespace BlogDotNetCore
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            //var sqlConnection = Configuration.GetConnectionString("SqlServerConnection");
+            //services.AddDbContext<EFCoreDB>(option => option.UseSqlServer(sqlConnection));
+
+            services.Configure<BlogDotNetCore.Data.Configuration.Data>(x => {
+                x.Provider = (Data.Configuration.DataProvider)Enum.Parse(
+                    typeof(Data.Configuration.DataProvider),
+                    Configuration.GetSection("Data")["Provider"]);
+            });
+
+            services.Configure<BlogDotNetCore.Data.Configuration.ConnectionStrings>(
+                    Configuration.GetSection("ConnectionStrrings")
+                );
+
+            services.AddEntityFrameworkCore(Configuration);
+
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             #region Swagger
@@ -46,11 +66,13 @@ namespace BlogDotNetCore
                 });
                 var basePath = Microsoft.DotNet.PlatformAbstractions.ApplicationEnvironment.ApplicationBasePath;
                 //  Microsoft.Extensions.PlatformAbstractions.PlatformServices.Default.Application.ApplicationBasePath;
-                var xmlPath = Path.Combine(basePath, "BlogDotNetCore.xml");//这个就是刚刚配置的xml文件名
+                var xmlPath = Path.Combine(basePath, "BlogDotNetCore.xml");
                 x.IncludeXmlComments(xmlPath, true);//默认的第二个参数是false，这个是controller的注释，记得修改
             });
 
             #endregion
+
+            services.AddAutoMapper();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
