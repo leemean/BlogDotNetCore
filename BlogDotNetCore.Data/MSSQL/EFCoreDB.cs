@@ -10,15 +10,15 @@ namespace BlogDotNetCore.Data
 {
     public class EFCoreDB : DbContext , IBaseDB
     {
-        public DbSet<articleInfo> article_infos { get; set; }
+        public DbSet<articleInfo> articleInfos { get; set; }
 
-        public DbSet<articleConetnt> article_conetnts { get; set; }
+        public DbSet<articleConetnt> articleConetnts { get; set; }
 
-        public DbSet<articleComment> article_comments { get; set; }
+        public DbSet<articleComment> articleComments { get; set; }
 
-        public DbSet<articlePicture> article_pictures { get; set; }
+        public DbSet<articlePicture> articlePictures { get; set; }
 
-        public DbSet<articleType> article_types { get; set; }
+        public DbSet<articleType> articleTypes { get; set; }
 
         public EFCoreDB(DbContextOptions options) : base(options)
         {

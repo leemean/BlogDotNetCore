@@ -11,11 +11,11 @@ namespace BlogDotNetCore.Data.Repository
     //仓储的泛型实现类
     public abstract class EFCoreBaseRepository<TEntity> : IRepository<TEntity> where TEntity : AggregateRoot
     {
-        private IEFCoreUnitOfWork _unitOfWork { get; set; }
+        private IBaseDB _baseDB { get; set; }
 
-        public EFCoreBaseRepository(IEFCoreUnitOfWork unitOfWork)
+        public EFCoreBaseRepository(IBaseDB baseDB)
         {
-            _unitOfWork = unitOfWork;
+            _baseDB = baseDB;
         }
 
         public virtual IQueryable<TEntity> Entities

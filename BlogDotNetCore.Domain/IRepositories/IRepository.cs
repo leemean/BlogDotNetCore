@@ -11,24 +11,9 @@ namespace BlogDotNetCore.Domain
     /// <typeparam name="TEntity">泛型聚合根，因为在DDD里面仓储只能对聚合根做操作</typeparam>
     public interface IRepository<TEntity> where TEntity : AggregateRoot
     {
-        #region 属性
-        IQueryable<TEntity> Entities { get; }
-        #endregion
-
-        #region 公共方法
-        int Insert(TEntity entity);
-
-        int Insert(IEnumerable<TEntity> entities);
-
-        int Delete(object id);
-
-        int Delete(TEntity entity);
-
-        int Delete(IEnumerable<TEntity> entities);
-
-        int Update(TEntity entity);
-
-        TEntity GetByKey(object key);
-        #endregion
+        TEntity GetById(int id);
+        TEntity GetByName(string name);
+        void Create(TEntity entity);
+        void Update(TEntity entity);
     }
 }
