@@ -12,7 +12,7 @@ namespace BlogDotNetCore.Data
     {
         public DbSet<articleInfo> articleInfos { get; set; }
 
-        public DbSet<articleConetnt> articleConetnts { get; set; }
+        public DbSet<articleContent> articleConetnts { get; set; }
 
         public DbSet<articleComment> articleComments { get; set; }
 

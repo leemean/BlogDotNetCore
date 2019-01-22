@@ -4,7 +4,16 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>G:\Code\MyProjects\BlogDotNetCore\BlogDotNetCore\bin\Debug\</OutputPath>
+  </PropertyGroup>
+
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BlogDotNetCore.Data\BlogDotNetCore.Data.csproj" />
     <ProjectReference Include="..\BlogDotNetCore.Domain\BlogDotNetCore.Domain.csproj" />
   </ItemGroup>
 

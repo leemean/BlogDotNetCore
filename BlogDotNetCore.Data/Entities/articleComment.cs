@@ -8,9 +8,9 @@ namespace BlogDotNetCore.Data
     public class articleComment
     {
         [Key]
-        public int id { get; set; }
+        public Guid id { get; set; }
 
-        public int article_info_id { get; set; }
+        public Guid article_info_id { get; set; }
 
         public string name { get; set; }
 

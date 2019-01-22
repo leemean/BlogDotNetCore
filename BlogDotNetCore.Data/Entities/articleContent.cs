@@ -7,12 +7,12 @@ namespace BlogDotNetCore.Data
     /// <summary>
     /// 文章内容
     /// </summary>
-    public class articleConetnt
+    public class articleContent
     {
         [Key]
-        public int id { get; set; }
+        public Guid id { get; set; }
 
-        public int article_info_id { get; set; }
+        public Guid article_info_id { get; set; }
 
         public string content { get; set; }
 

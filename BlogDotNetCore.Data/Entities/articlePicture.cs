@@ -8,9 +8,9 @@ namespace BlogDotNetCore.Data
     public class articlePicture
     {
         [Key]
-        public int id { get; set; }
+        public Guid id { get; set; }
 
-        public int article_info_id { get; set; }
+        public Guid article_info_id { get; set; }
 
         public byte[] picture { get; set; }
 

@@ -6,7 +6,7 @@ namespace BlogDotNetCore.Domain
 {
     public class articleInfoDto : AggregateRoot 
     {
-        public int id { get; set; }
+        public Guid id { get; set; }
 
         public string create_by { get; set; }
 
@@ -14,7 +14,7 @@ namespace BlogDotNetCore.Domain
 
         public string update_by { get; set; }
 
-        public DateTime update_date { get; set; }
+        public DateTime? update_date { get; set; }
 
         public string version { get; set; }
 
@@ -24,7 +24,7 @@ namespace BlogDotNetCore.Domain
 
         public string type { get; set; }
 
-        public string is_top { get; set; }
+        public bool is_top { get; set; }
 
         public string author { get; set; }
 
@@ -43,7 +43,7 @@ namespace BlogDotNetCore.Domain
 
         }
 
-        public static articleInfoDto createNew()
+        public static articleInfoDto CreateNew()
         {
             return new articleInfoDto
             {

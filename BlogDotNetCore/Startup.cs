@@ -15,6 +15,11 @@ using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.Swagger;
 
 using BlogDotNetCore.Data.Extensions;
+using Microsoft.EntityFrameworkCore;
+using Autofac;
+using System.Reflection;
+using Autofac.Extras.DynamicProxy;
+using Autofac.Extensions.DependencyInjection;
 
 namespace BlogDotNetCore
 {
@@ -28,13 +33,14 @@ namespace BlogDotNetCore
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public IServiceProvider ConfigureServices(IServiceCollection services)
         {
 
             //var sqlConnection = Configuration.GetConnectionString("SqlServerConnection");
             //services.AddDbContext<EFCoreDB>(option => option.UseSqlServer(sqlConnection));
 
-            services.Configure<BlogDotNetCore.Data.Configuration.Data>(x => {
+            services.Configure<BlogDotNetCore.Data.Configuration.Data>(x =>
+            {
                 x.Provider = (Data.Configuration.DataProvider)Enum.Parse(
                     typeof(Data.Configuration.DataProvider),
                     Configuration.GetSection("Data")["Provider"]);
@@ -51,6 +57,8 @@ namespace BlogDotNetCore
 
             #region Swagger
 
+            var basePath = Microsoft.DotNet.PlatformAbstractions.ApplicationEnvironment.ApplicationBasePath;
+
             services.AddSwaggerGen(x =>
             {
                 x.SwaggerDoc("v1", new Info{
@@ -64,7 +72,7 @@ namespace BlogDotNetCore
                         Url = ""
                     }
                 });
-                var basePath = Microsoft.DotNet.PlatformAbstractions.ApplicationEnvironment.ApplicationBasePath;
+                
                 //  Microsoft.Extensions.PlatformAbstractions.PlatformServices.Default.Application.ApplicationBasePath;
                 var xmlPath = Path.Combine(basePath, "BlogDotNetCore.xml");
                 x.IncludeXmlComments(xmlPath, true);//默认的第二个参数是false，这个是controller的注释，记得修改
@@ -73,6 +81,28 @@ namespace BlogDotNetCore
             #endregion
 
             services.AddAutoMapper();
+
+            var builder = new ContainerBuilder();
+
+            //service
+            var servicesfile = Path.Combine(basePath, "BlogDotNetCore.Services.dll");
+            var serviceassemblies = Assembly.LoadFile(servicesfile);
+            builder.RegisterAssemblyTypes(serviceassemblies)
+                .AsImplementedInterfaces()
+                .InstancePerLifetimeScope()
+                .EnableInterfaceInterceptors();
+
+            //repository
+            var repositoryfile = Path.Combine(basePath, "BlogDotNetCore.Repository.dll");
+            var repositoryasemblies = Assembly.LoadFile(repositoryfile);
+            builder.RegisterAssemblyTypes(repositoryasemblies).AsImplementedInterfaces();
+
+            builder.Populate(services);
+
+            var ApplicationContainer = builder.Build();
+
+            return new AutofacServiceProvider(ApplicationContainer);
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlogDotNetCore.Utility", "B
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlogDotNetCore.Data", "BlogDotNetCore.Data\BlogDotNetCore.Data.csproj", "{151293B6-11FC-4285-BC06-E826943BF0BA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlogDotNetCore.Infrastructure", "BlogDotNetCore.Infrastructure\BlogDotNetCore.Infrastructure.csproj", "{4F167A8C-E048-4C6A-A626-55E97606A8C4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlogDotNetCore.Infrastructure", "BlogDotNetCore.Infrastructure\BlogDotNetCore.Infrastructure.csproj", "{4F167A8C-E048-4C6A-A626-55E97606A8C4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlogDotNetCore.Repository", "BlogDotNetCore.Repository\BlogDotNetCore.Repository.csproj", "{0D43710F-4EE4-4F20-BA47-1FBA1E42B122}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{4F167A8C-E048-4C6A-A626-55E97606A8C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4F167A8C-E048-4C6A-A626-55E97606A8C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4F167A8C-E048-4C6A-A626-55E97606A8C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D43710F-4EE4-4F20-BA47-1FBA1E42B122}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D43710F-4EE4-4F20-BA47-1FBA1E42B122}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D43710F-4EE4-4F20-BA47-1FBA1E42B122}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D43710F-4EE4-4F20-BA47-1FBA1E42B122}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

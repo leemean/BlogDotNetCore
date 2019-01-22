@@ -11,7 +11,7 @@ namespace BlogDotNetCore.Data
     public class articleInfo
     {
         [Key]
-        public int id { get; set; }
+        public Guid id { get; set; }
 
         public string create_by { get; set; }
 
@@ -41,7 +41,7 @@ namespace BlogDotNetCore.Data
 
         public List<articleComment> article_comments { get; set; }
 
-        public articleConetnt article_conetnt { get; set; }
+        public articleContent article_content { get; set; }
 
     }
 }

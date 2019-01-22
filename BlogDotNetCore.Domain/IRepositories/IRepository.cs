@@ -11,9 +11,9 @@ namespace BlogDotNetCore.Domain
     /// <typeparam name="TEntity">泛型聚合根，因为在DDD里面仓储只能对聚合根做操作</typeparam>
     public interface IRepository<TEntity> where TEntity : AggregateRoot
     {
-        TEntity GetById(int id);
+        TEntity GetById(Guid id);
         TEntity GetByName(string name);
-        void Create(TEntity entity);
-        void Update(TEntity entity);
+        bool Create(TEntity entity);
+        bool Update(TEntity entity);
     }
 }
