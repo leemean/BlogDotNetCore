@@ -32,13 +32,15 @@ namespace BlogDotNetCore.Data.Migrations
 
                     b.Property<string>("email");
 
+                    b.Property<bool>("is_del");
+
                     b.Property<string>("name");
 
                     b.HasKey("id");
 
                     b.HasIndex("articleInfoid");
 
-                    b.ToTable("articleComments");
+                    b.ToTable("articleComment");
                 });
 
             modelBuilder.Entity("BlogDotNetCore.Data.articleContent", b =>
@@ -50,9 +52,11 @@ namespace BlogDotNetCore.Data.Migrations
 
                     b.Property<string>("content");
 
+                    b.Property<bool>("is_del");
+
                     b.HasKey("id");
 
-                    b.ToTable("articleConetnts");
+                    b.ToTable("articleContent");
                 });
 
             modelBuilder.Entity("BlogDotNetCore.Data.articleInfo", b =>
@@ -92,7 +96,7 @@ namespace BlogDotNetCore.Data.Migrations
 
                     b.HasIndex("article_contentid");
 
-                    b.ToTable("articleInfos");
+                    b.ToTable("articleInfo");
                 });
 
             modelBuilder.Entity("BlogDotNetCore.Data.articlePicture", b =>
@@ -102,13 +106,15 @@ namespace BlogDotNetCore.Data.Migrations
 
                     b.Property<Guid>("article_info_id");
 
+                    b.Property<bool>("is_del");
+
                     b.Property<byte[]>("picture");
 
                     b.Property<string>("picture_url");
 
                     b.HasKey("id");
 
-                    b.ToTable("articlePictures");
+                    b.ToTable("articlePicture");
                 });
 
             modelBuilder.Entity("BlogDotNetCore.Data.articleType", b =>
@@ -120,6 +126,8 @@ namespace BlogDotNetCore.Data.Migrations
 
                     b.Property<string>("code");
 
+                    b.Property<bool>("is_del");
+
                     b.Property<string>("name");
 
                     b.Property<string>("remark");
@@ -128,7 +136,7 @@ namespace BlogDotNetCore.Data.Migrations
 
                     b.HasKey("id");
 
-                    b.ToTable("articleTypes");
+                    b.ToTable("articleType");
                 });
 
             modelBuilder.Entity("BlogDotNetCore.Data.articleComment", b =>

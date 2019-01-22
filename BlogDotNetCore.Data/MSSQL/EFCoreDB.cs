@@ -34,5 +34,13 @@ namespace BlogDotNetCore.Data
         {
             return Set<TEntity>().AsNoTracking<TEntity>();
         }
+
+        public bool Commit()
+        {
+            if (SaveChanges() > 0)
+                return true;
+            else
+                return false;
+        }
     }
 }

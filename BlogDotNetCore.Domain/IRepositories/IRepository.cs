@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 
 namespace BlogDotNetCore.Domain
@@ -13,6 +14,7 @@ namespace BlogDotNetCore.Domain
     {
         TEntity GetById(Guid id);
         TEntity GetByName(string name);
+        List<TEntity> Query(Expression<Func<TEntity, bool>> whereExpression);
         bool Create(TEntity entity);
         bool Update(TEntity entity);
     }

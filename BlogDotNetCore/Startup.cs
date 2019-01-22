@@ -13,9 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.Swagger;
-
 using BlogDotNetCore.Data.Extensions;
-using Microsoft.EntityFrameworkCore;
 using Autofac;
 using System.Reflection;
 using Autofac.Extras.DynamicProxy;

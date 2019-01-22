@@ -33,7 +33,7 @@ namespace BlogDotNetCore.Domain
 
         bool IsCommitted { get; set; }
 
-        int Commit();
+        bool Commit();
 
         void Rollback();
     }

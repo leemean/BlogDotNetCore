@@ -22,10 +22,15 @@ namespace BlogDotNetCore.Services
             return _articleInfoRepository.GetById(id);
         }
 
-        public bool CreateArticleInfo()
+        public List<articleInfoDto> GetAllArticleInfos()
+        {
+            return _articleInfoRepository.Query(x => x.is_del == false);
+        }
+
+        public bool CreateArticleInfo(articleInfoDto articleInfoDto)
         {
             var id = Guid.NewGuid();
-            articleInfoDto articleInfoDto = new articleInfoDto
+            articleInfoDto newArticle = new articleInfoDto
             {
                 id = id,
                 create_by = "liming",
@@ -45,9 +50,42 @@ namespace BlogDotNetCore.Services
             {
                 new articleCommentDto{  id = Guid.NewGuid(), article_info_id = id, name = "张三", email = "zhangshan@qq.com", content = "文章不错呀！！！" }
             };
-            articleInfoDto.article_Content = articleContent;
-            articleInfoDto.article_Comments = articleCommentDto;
-            return _articleInfoRepository.Create(articleInfoDto);
+            newArticle.article_Content = articleContent;
+            newArticle.article_Comments = articleCommentDto;
+            //articleInfoDto.id = id;
+            //if(articleInfoDto.article_Content != null)
+            //    articleInfoDto.article_Content.article_info_id = id;
+            //if(articleInfoDto.article_Comments != null)
+            //{
+            //    foreach(var item in articleInfoDto.article_Comments)
+            //    {
+            //        item.article_info_id = id;
+            //    }
+            //}
+            return _articleInfoRepository.Create(newArticle);
+        }
+
+        public bool UpdateArticleInfo(articleInfoDto articleInfoDto)
+        {
+            return _articleInfoRepository.Update(articleInfoDto);
+        }
+
+        public bool DeleteArticleInfo(Guid id)
+        {
+            articleInfoDto del = _articleInfoRepository.GetById(id);
+            del.is_del = true;
+            if(del.article_Content != null)
+            {
+                del.article_Content.is_del = true;
+            }
+            if(del.article_Comments != null)
+            {
+                foreach(var item in del.article_Comments)
+                {
+                    item.is_del = true;
+                }
+            }
+            return _articleInfoRepository.Update(del);
         }
     }
 }

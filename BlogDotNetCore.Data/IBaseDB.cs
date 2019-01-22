@@ -16,6 +16,6 @@ namespace BlogDotNetCore.Data
 
         IQueryable<TEntity> Table<TEntity>() where TEntity : class;
 
-        int SaveChanges();
+        bool Commit();
     }
 }

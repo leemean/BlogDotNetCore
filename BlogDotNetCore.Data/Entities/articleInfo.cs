@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BlogDotNetCore.Data
 {
+    [Table("articleInfo")]
     /// <summary>
     /// 文章信息
     /// </summary>

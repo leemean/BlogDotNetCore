@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace BlogDotNetCore.Data
 {
+    [Table("articleType")]
     public class articleType
     {
         [Key]
@@ -19,5 +21,7 @@ namespace BlogDotNetCore.Data
         public string name { get; set; }
 
         public string remark { get; set; }
+
+        public bool is_del { get; set; }
     }
 }

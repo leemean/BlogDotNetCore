@@ -55,15 +55,15 @@ namespace BlogDotNetCore.Data.UnitOfWork
 
         public bool IsCommitted { get; set; }
 
-        public int Commit()
+        public bool Commit()
         {
             if (IsCommitted)
             {
-                return 0;
+                return false;
             }
             try
             {
-                int result = context.SaveChanges();
+                bool result = context.Commit();
                 IsCommitted = true;
                 return result;
             }

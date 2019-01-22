@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace BlogDotNetCore.Data
 {
+    [Table("articlePicture")]
     public class articlePicture
     {
         [Key]
@@ -15,5 +17,7 @@ namespace BlogDotNetCore.Data
         public byte[] picture { get; set; }
 
         public string picture_url { get; set; }
+
+        public bool is_del { get; set; }
     }
 }

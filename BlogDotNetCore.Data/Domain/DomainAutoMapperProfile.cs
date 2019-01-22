@@ -15,6 +15,12 @@ namespace BlogDotNetCore.Data.Domain
         {
             CreateMap<articleInfoDto,articleInfo>();
             CreateMap<articleInfo, articleInfoDto>().ConstructUsing(x => new articleInfoDto());
+
+            CreateMap<articleContentDto, articleContent>();
+            CreateMap<articleContent, articleContentDto>().ConstructUsing(x => new articleContentDto());
+
+            CreateMap<articleCommentDto, articleComment>();
+            CreateMap<articleComment, articleCommentDto>().ConstructUsing(x => new articleCommentDto());
         }
     }
 }

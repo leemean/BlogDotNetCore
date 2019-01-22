@@ -15,5 +15,7 @@ namespace BlogDotNetCore.Domain
         public string email { get; set; }
 
         public string content { get; set; }
+        
+        public bool is_del { get; set; }
     }
 }

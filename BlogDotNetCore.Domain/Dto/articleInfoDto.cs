@@ -43,11 +43,25 @@ namespace BlogDotNetCore.Domain
 
         }
 
-        public static articleInfoDto CreateNew()
+        public static articleInfoDto CreateNew(Guid id,string createBy,DateTime createDate,string updateBy,
+                    DateTime updateDate,string version,bool isDel,string title,string type,bool isTop,
+                    string author,string original_link,bool isOriginal,bool isPrivate
+            )
         {
             return new articleInfoDto
             {
-
+                id = id,
+                create_by = createBy,
+                create_date = createDate,
+                update_by = createBy,
+                update_date = updateDate,
+                is_del = isDel,
+                title = title,
+                type = type,
+                is_top = isTop,
+                author = author,
+                is_original = isOriginal,
+                is_private = isPrivate
             };
         }
     }

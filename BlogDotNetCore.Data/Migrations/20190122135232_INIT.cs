@@ -8,34 +8,36 @@ namespace BlogDotNetCore.Data.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "articleConetnts",
+                name: "articleContent",
                 columns: table => new
                 {
                     id = table.Column<Guid>(nullable: false),
                     article_info_id = table.Column<Guid>(nullable: false),
-                    content = table.Column<string>(nullable: true)
+                    content = table.Column<string>(nullable: true),
+                    is_del = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_articleConetnts", x => x.id);
+                    table.PrimaryKey("PK_articleContent", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "articlePictures",
+                name: "articlePicture",
                 columns: table => new
                 {
                     id = table.Column<Guid>(nullable: false),
                     article_info_id = table.Column<Guid>(nullable: false),
                     picture = table.Column<byte[]>(nullable: true),
-                    picture_url = table.Column<string>(nullable: true)
+                    picture_url = table.Column<string>(nullable: true),
+                    is_del = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_articlePictures", x => x.id);
+                    table.PrimaryKey("PK_articlePicture", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "articleTypes",
+                name: "articleType",
                 columns: table => new
                 {
                     id = table.Column<Guid>(nullable: false),
@@ -43,15 +45,16 @@ namespace BlogDotNetCore.Data.Migrations
                     code = table.Column<string>(nullable: true),
                     value = table.Column<string>(nullable: true),
                     name = table.Column<string>(nullable: true),
-                    remark = table.Column<string>(nullable: true)
+                    remark = table.Column<string>(nullable: true),
+                    is_del = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_articleTypes", x => x.id);
+                    table.PrimaryKey("PK_articleType", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "articleInfos",
+                name: "articleInfo",
                 columns: table => new
                 {
                     id = table.Column<Guid>(nullable: false),
@@ -72,17 +75,17 @@ namespace BlogDotNetCore.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_articleInfos", x => x.id);
+                    table.PrimaryKey("PK_articleInfo", x => x.id);
                     table.ForeignKey(
-                        name: "FK_articleInfos_articleConetnts_article_contentid",
+                        name: "FK_articleInfo_articleContent_article_contentid",
                         column: x => x.article_contentid,
-                        principalTable: "articleConetnts",
+                        principalTable: "articleContent",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "articleComments",
+                name: "articleComment",
                 columns: table => new
                 {
                     id = table.Column<Guid>(nullable: false),
@@ -90,46 +93,47 @@ namespace BlogDotNetCore.Data.Migrations
                     name = table.Column<string>(nullable: true),
                     email = table.Column<string>(nullable: true),
                     content = table.Column<string>(nullable: true),
+                    is_del = table.Column<bool>(nullable: false),
                     articleInfoid = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_articleComments", x => x.id);
+                    table.PrimaryKey("PK_articleComment", x => x.id);
                     table.ForeignKey(
-                        name: "FK_articleComments_articleInfos_articleInfoid",
+                        name: "FK_articleComment_articleInfo_articleInfoid",
                         column: x => x.articleInfoid,
-                        principalTable: "articleInfos",
+                        principalTable: "articleInfo",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_articleComments_articleInfoid",
-                table: "articleComments",
+                name: "IX_articleComment_articleInfoid",
+                table: "articleComment",
                 column: "articleInfoid");
 
             migrationBuilder.CreateIndex(
-                name: "IX_articleInfos_article_contentid",
-                table: "articleInfos",
+                name: "IX_articleInfo_article_contentid",
+                table: "articleInfo",
                 column: "article_contentid");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "articleComments");
+                name: "articleComment");
 
             migrationBuilder.DropTable(
-                name: "articlePictures");
+                name: "articlePicture");
 
             migrationBuilder.DropTable(
-                name: "articleTypes");
+                name: "articleType");
 
             migrationBuilder.DropTable(
-                name: "articleInfos");
+                name: "articleInfo");
 
             migrationBuilder.DropTable(
-                name: "articleConetnts");
+                name: "articleContent");
         }
     }
 }

@@ -11,5 +11,7 @@ namespace BlogDotNetCore.Domain
         public Guid article_info_id { get; set; }
 
         public string content { get; set; }
+
+        public bool is_del { get; set; }
     }
 }
