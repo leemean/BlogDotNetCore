@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlogDotNetCore.Data.Migrations
 {
     [DbContext(typeof(EFCoreDB))]
-    [Migration("20190122135232_INIT")]
+    [Migration("20190122161746_INIT")]
     partial class INIT
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

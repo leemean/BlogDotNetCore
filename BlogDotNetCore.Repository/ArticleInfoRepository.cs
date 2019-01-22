@@ -59,7 +59,7 @@ namespace BlogDotNetCore.Repository
             articleinfo.article_comments = baseDB.Table<articleComment>().Where(x => x.article_info_id == articleinfo.id).ToList();
         }
 
-        public void UpdateDetails(IBaseDB baseDB, articleContent content,List<articleComment> comments)
+        public void UpdateDetails(IBaseDB baseDB, articleContent content, ICollection<articleComment> comments)
         {
             var articleContent = baseDB.Table<articleContent>().FirstOrDefault(x => x.id == content.id);
             if(articleContent == null)

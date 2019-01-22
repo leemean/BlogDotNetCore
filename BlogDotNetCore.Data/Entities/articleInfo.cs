@@ -40,7 +40,7 @@ namespace BlogDotNetCore.Data
 
         public bool is_private { get; set; }
 
-        public List<articleComment> article_comments { get; set; }
+        public ICollection<articleComment> article_comments { get; set; }
 
         public articleContent article_content { get; set; }
 

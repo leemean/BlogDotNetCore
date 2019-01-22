@@ -60,7 +60,7 @@ namespace BlogDotNetCore.Controllers
             else if(type == "2")
             {
                 var delId = data.id;
-                result = _articleInfoService.DeleteArticleInfo(delId);
+                result = _articleInfoService.DeleteArticleInfo(Guid.Parse(delId));
             }
         }
     }

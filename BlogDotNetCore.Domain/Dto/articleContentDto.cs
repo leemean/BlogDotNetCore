@@ -6,9 +6,9 @@ namespace BlogDotNetCore.Domain
 {
     public class articleContentDto : IEntity
     {
-        public Guid id { get; set; }
+        public string id { get; set; }
 
-        public Guid article_info_id { get; set; }
+        public string article_info_id { get; set; }
 
         public string content { get; set; }
 

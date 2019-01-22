@@ -25,6 +25,16 @@ namespace BlogDotNetCore.Data
 
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            //modelBuilder.Entity<articleInfo>(
+            //        entity =>
+            //        {
+            //            entity.Property(p => p.article_content).;
+            //        }
+            //    );
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);

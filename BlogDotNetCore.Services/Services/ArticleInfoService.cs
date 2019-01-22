@@ -29,7 +29,7 @@ namespace BlogDotNetCore.Services
 
         public bool CreateArticleInfo(articleInfoDto articleInfoDto)
         {
-            var id = Guid.NewGuid();
+            var id = Guid.NewGuid().ToString();
             articleInfoDto newArticle = new articleInfoDto
             {
                 id = id,
@@ -45,10 +45,10 @@ namespace BlogDotNetCore.Services
                 is_original = true,
                 is_private = false
             };
-            articleContentDto articleContent = new articleContentDto { id = Guid.NewGuid(), article_info_id = id, content = "第一篇博客kjsflkjakfl" };
+            articleContentDto articleContent = new articleContentDto { id = Guid.NewGuid().ToString(), article_info_id = id, content = "第一篇博客kjsflkjakfl" };
             List<articleCommentDto> articleCommentDto = new List<articleCommentDto>
             {
-                new articleCommentDto{  id = Guid.NewGuid(), article_info_id = id, name = "张三", email = "zhangshan@qq.com", content = "文章不错呀！！！" }
+                new articleCommentDto{  id = Guid.NewGuid().ToString(), article_info_id = id, name = "张三", email = "zhangshan@qq.com", content = "文章不错呀！！！" }
             };
             newArticle.article_Content = articleContent;
             newArticle.article_Comments = articleCommentDto;

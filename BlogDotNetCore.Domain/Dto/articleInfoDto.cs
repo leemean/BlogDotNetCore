@@ -6,7 +6,7 @@ namespace BlogDotNetCore.Domain
 {
     public class articleInfoDto : AggregateRoot 
     {
-        public Guid id { get; set; }
+        public string id { get; set; }
 
         public string create_by { get; set; }
 
@@ -50,7 +50,7 @@ namespace BlogDotNetCore.Domain
         {
             return new articleInfoDto
             {
-                id = id,
+                id = id.ToString(),
                 create_by = createBy,
                 create_date = createDate,
                 update_by = createBy,
