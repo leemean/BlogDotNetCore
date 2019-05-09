@@ -90,7 +90,7 @@ namespace BlogDotNetCore.Repository
             var expression = _mapper.Map<Expression<Func<articleInfo, bool>>>(whereExpression);
 
             var dbEntity = _baseDB.Table<articleInfo>()
-                .Where(x=>x.is_del == false); //TODO expression
+                .Where(expression); //TODO expression
 
             List<articleInfoDto> result = new List<articleInfoDto>();
             if (dbEntity != null)
